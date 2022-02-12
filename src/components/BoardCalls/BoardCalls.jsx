@@ -1,17 +1,18 @@
 import React, { useEffect, useCallback, useState } from "react";
 //API
-import { fetchListCalls } from "../../services/API";
+import { fetchListCalls, fetchRecordCall } from "../../services/API";
+//components
+import { TableCalls } from "../TableCalls";
 
 export const BoardCalls = () => {
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
 
   const fetchListData = useCallback(async () => {
     const result = await fetchListCalls();
     if (result?.data) {
       const { data } = result;
 
-      // setData(data);
-      console.log(data);
+      setData(data);
     }
   }, []);
 
@@ -19,5 +20,5 @@ export const BoardCalls = () => {
     fetchListData();
   }, [fetchListData]);
 
-  return data;
+  return <TableCalls data={data} />;
 };

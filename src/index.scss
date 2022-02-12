@@ -1,0 +1,19 @@
+@import "../node_modules/modern-normalize/modern-normalize.css";
+
+@font-face {
+  font-family: "SF Pro Display Regular";
+  src: url("../src/fonts/SFPRODISPLAYREGULAR.OTF") format("OTF");
+}
+
+@font-face {
+  font-family: "SF Pro Display Medium";
+  src: url("../src/fonts/SFPRODISPLAYMEDIUM.OTF") format("OTF");
+}
+
+@import "./variables/variables.scss";
+
+body {
+  background-color: var(--bg-page);
+
+  font-family: "SF Pro Display Medium";
+}

@@ -1,0 +1,25 @@
+table {
+  border-radius: 8px;
+
+  padding: 26px 40px;
+
+  background-color: var(--bg-table);
+  border-collapse: collapse;
+}
+
+table tr {
+  padding: 22px 40px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+table th {
+  padding: 26px 40px;
+}
+
+table td {
+  padding: 22px 40px;
+}
+
+.iconRedDown {
+  transform: rotate(-180deg);
+}
