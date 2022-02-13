@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 //style
 import "./TableCalls.scss";
 //components
@@ -6,13 +6,41 @@ import { ReactComponent as BlueDownIcon } from "./icon/arrowDownBlue.svg";
 import { ReactComponent as GreenUPIcon } from "./icon/arrowUpGreen.svg";
 import { ReactComponent as RedUpIcon } from "./icon/arrowUpRed.svg";
 import { ButtonDetect } from "../ButtonDetect";
-import { SelectCategoryDate } from "../SelectCategory";
+import {
+  SelectCategoryDate,
+  SelectCategoryTypeCall,
+  SelectCategoryClient,
+} from "../SelectCategory";
 
 //helpers
 import { getNormalizeTime } from "../../helpers/getNormalizeTime";
 import { getNormalizeMinute } from "../../helpers/getNormalizeMinute";
+import { useState } from "react/cjs/react.development";
 
 export const TableCalls = ({ data }) => {
+  const [date, setDate] = useState({ value: 1, text: "3 дня" });
+  const [typeCalls, setTypeCalls] = useState("все");
+  const [client, setClient] = useState();
+
+  const [filterList, seFlterList] = useState([]);
+
+  useEffect(() => {
+    const filteredDate = data.filter(({ date_notime }) => {
+      const dateCall = new Date(date_notime);
+      const dateNow = new Date();
+      const diffDate = Math.ceil((dateNow - dateCall) / (1000 * 3600 * 24));
+      return diffDate <= 3;
+    });
+
+    const filterCalls = filteredDate.filter(({ in_out }) => in_out === "1");
+
+    const filterPerson = filterCalls.filter(
+      ({ from_number }) => from_number === "799**93**"
+    );
+
+    seFlterList(filterPerson);
+  }, [data]);
+
   const setTypeCall = (item) => {
     const { status, in_out } = item;
 
@@ -61,12 +89,18 @@ export const TableCalls = ({ data }) => {
         <thead>
           <tr className="table__item">
             <th className="table__head-space"></th>
-            <th className="table__head-type">Тип</th>
+            <th className="table__head-type">
+              <SelectCategoryTypeCall onChange={setTypeCalls} />
+              Тип
+            </th>
             <th className="table__head-time">
-              <SelectCategoryDate />
+              <SelectCategoryDate onChange={setDate} />
               Время
             </th>
-            <th className="table__head-person">Сотрудник</th>
+            <th className="table__head-person">
+              <SelectCategoryClient onChange={setClient} data={data} />
+              Сотрудник
+            </th>
             <th className="table__head-calls">Звонки</th>
             <th className="table__head-source">Источник</th>
             <th className="table__head-score">Оценка</th>
@@ -74,8 +108,8 @@ export const TableCalls = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data &&
-            data.map((item) => {
+          {filterList &&
+            filterList.map((item) => {
               return (
                 <tr key={item.id} className="table__item">
                   <td> </td>

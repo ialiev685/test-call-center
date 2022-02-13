@@ -2,9 +2,10 @@
   --color-white: #ffffff;
   --color-gray: #e5e5e5;
   --color-silver: #eaf0fa;
-  --color-text: #122945;
-  --color-text2: #5e7793;
+  --color-black: #122945;
+  --color-gray2: #5e7793;
   --color-blue: #002cfb;
+  --color-blue2: #005ff8;
   --color-blue-light: #deeafe;
 
   --font-family-regular: "SF Pro Display Regular";
@@ -12,9 +13,10 @@
   --border-color-silver: var(--color-silver);
   --border-color-blue: var(--color-blue);
 
-  --color-text-primary: var(--color-text);
-  --color-text-secondary: var(--color-text2);
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-gray2);
   --color-text-blue: var(--color-blue);
+  --color-text-blue2: var(--color-blue2);
 
   --bg-page: var(--color-gray);
   --bg-table: var(--color-white);

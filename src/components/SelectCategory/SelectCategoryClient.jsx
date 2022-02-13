@@ -4,12 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { ReactComponent as ArrowIcon } from "./arrowSelect.svg";
 import { ReactComponent as CalendarIcon } from "./caalendar.svg";
 
-export const SelectCategoryDate = (props) => {
-  const { value, onChange, name = "unknow"  } = props;
+export const SelectCategoryClient = (props) => {
+  const { value, onChange, name = "unknow", data = [] } = props;
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
-    target: { value: 1, text: "3 дня" },
+    target: { value: 0, text: "Все" },
   });
 
   const [indexHover, setIndexHover] = useState(0);
@@ -20,8 +20,8 @@ export const SelectCategoryDate = (props) => {
   const itemRef = useRef();
 
   useEffect(() => {
-    if (value === "3 дня") {
-      setCurrentValue({ target: { value: 1, text: "3 дня" } });
+    if (value === "Все") {
+      setCurrentValue({ target: { value: 0, text: "Все" } });
       setCurrentColor(false);
     }
   }, [value]);
@@ -103,7 +103,22 @@ export const SelectCategoryDate = (props) => {
   };
 
   //список
-  const listArray = ["3 дня", "Неделя", "Месяц", "Год", "Указать даты"];
+  //data
+  // const listArray = ["Исходящие", "Входящие", "Все"];
+  const listArray = [];
+  data.forEach(({ contact_name, contact_company }) => {
+    const contragent = `${contact_name} ${contact_company}`;
+    const normalizeContragent = contragent.trim();
+    if (
+      !listArray.includes(normalizeContragent) &&
+      normalizeContragent !== ""
+    ) {
+      console.log(normalizeContragent);
+      listArray.push(normalizeContragent);
+    }
+  }, []);
+
+  console.log(listArray);
 
   return (
     <div ref={wrapperRef} style={{ position: "relative" }}>
