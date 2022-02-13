@@ -5,12 +5,12 @@ import "./TableCalls.scss";
 import { ReactComponent as BlueDownIcon } from "./icon/arrowDownBlue.svg";
 import { ReactComponent as GreenUPIcon } from "./icon/arrowUpGreen.svg";
 import { ReactComponent as RedUpIcon } from "./icon/arrowUpRed.svg";
+import { ButtonDetect } from "../ButtonDetect";
+import { SelectCategoryDate } from "../SelectCategory";
+
 //helpers
 import { getNormalizeTime } from "../../helpers/getNormalizeTime";
 import { getNormalizeMinute } from "../../helpers/getNormalizeMinute";
-
-//API
-import { fetchRecordCall } from "../../services/API";
 
 export const TableCalls = ({ data }) => {
   const setTypeCall = (item) => {
@@ -36,7 +36,16 @@ export const TableCalls = ({ data }) => {
       const number = item.from_number;
       const showInfo = name || number;
 
-      if (name !== "") return `${item.contact_name} ${item.contact_company}`;
+      // if (name !== "") return `${item.contact_name} ${item.contact_company}`;
+      if (name !== "")
+        return (
+          <>
+            <span style={{ marginBottom: "6px" }}>{item.contact_name}</span>
+            <span style={{ color: "var(--color-text-secondary)" }}>
+              {item.contact_company}
+            </span>
+          </>
+        );
 
       return showInfo;
     }
@@ -53,7 +62,10 @@ export const TableCalls = ({ data }) => {
           <tr className="table__item">
             <th className="table__head-space"></th>
             <th className="table__head-type">Тип</th>
-            <th className="table__head-time">Время</th>
+            <th className="table__head-time">
+              <SelectCategoryDate />
+              Время
+            </th>
             <th className="table__head-person">Сотрудник</th>
             <th className="table__head-calls">Звонки</th>
             <th className="table__head-source">Источник</th>
@@ -66,13 +78,12 @@ export const TableCalls = ({ data }) => {
             data.map((item) => {
               return (
                 <tr key={item.id} className="table__item">
-                  <td></td>
+                  <td> </td>
                   <td data-v={item.status} data-b={item.in_out}>
                     {setTypeCall(item)}
                   </td>
                   <td>{getNormalizeTime(item.date)}</td>
                   <td
-                    className="item__cells"
                     data-id={item.person_id}
                     data-name={item.person_name}
                     data-surname={item.person_surname}
@@ -87,16 +98,12 @@ export const TableCalls = ({ data }) => {
                       height="32"
                     />
                   </td>
-                  <td>{identifyNumberPhone(item)}</td>
-                  <td></td>
-                  <td
-                    onClick={() => {
-                      const record = item.record;
-                      const partnership_id = item.partnership_id;
-                      fetchRecordCall({ record, partnership_id });
-                    }}
-                  >
-                    {item.record !== "" ? "Прослушать" : ""}
+                  <td className="table__nameNumber">
+                    {identifyNumberPhone(item)}
+                  </td>
+                  <td>-</td>
+                  <td>
+                    {item.record !== "" ? <ButtonDetect item={item} /> : ""}
                   </td>
                   <td>{getNormalizeMinute(item.time)}</td>
                 </tr>

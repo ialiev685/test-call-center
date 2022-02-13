@@ -4,13 +4,20 @@
   --color-silver: #eaf0fa;
   --color-text: #122945;
   --color-text2: #5e7793;
+  --color-blue: #002cfb;
+  --color-blue-light: #deeafe;
 
   --font-family-regular: "SF Pro Display Regular";
   --font-family-medium: "SF Pro Display Medium";
-  --border-color: var(--color-silver);
+  --border-color-silver: var(--color-silver);
+  --border-color-blue: var(--color-blue);
+
   --color-text-primary: var(--color-text);
   --color-text-secondary: var(--color-text2);
+  --color-text-blue: var(--color-blue);
 
   --bg-page: var(--color-gray);
   --bg-table: var(--color-white);
+  --bg-button-record: var(--color-white);
+  --bg-hover: var(--color-blue-light);
 }
