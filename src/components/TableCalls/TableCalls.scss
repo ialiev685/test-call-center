@@ -1,23 +1,89 @@
-table {
-  border-radius: 8px;
+.wrapper-table {
+  // padding-left: 40px;
 
-  padding: 26px 40px;
+  max-width: 1440px;
+
+  border-radius: 8px;
+}
+
+.table {
+  margin: 0;
+  border-radius: 8px;
 
   background-color: var(--bg-table);
   border-collapse: collapse;
-}
 
-table tr {
-  padding: 22px 40px;
-  border-bottom: 1px solid var(--border-color);
+  & th {
+    color: var(--color-text-secondary);
+
+    font-size: 14px;
+    line-height: 1;
+
+    padding: 26px 0 20px;
+
+    text-align: left;
+  }
+
+  & th:last-child,
+  & td:last-child {
+    text-align: right;
+
+    padding-right: 40px;
+  }
+
+  & td {
+    padding: 22px 0;
+  }
+
+  & td:first-child,
+  & th:first-child {
+    border-bottom: 1px solid transparent;
+  }
+
+  &__head-space {
+    width: 40px;
+  }
+
+  &__head-type {
+    width: 35px;
+  }
+
+  &__head-time {
+    width: 90px;
+  }
+
+  &__head-person {
+    width: 130px;
+  }
+
+  &__head-calls {
+    width: 330px;
+  }
+
+  &__head-source {
+    width: 215px;
+  }
+
+  &__head-score {
+    width: 460px;
+  }
+
+  &__head-duration {
+    width: 90px;
+  }
+
+  &__cells-body {
+    padding: 20px 16px;
+  }
+
+  &__item {
+    // text-align: center;
+    border-bottom: 1px solid var(--border-color);
+  }
 }
 
 table th {
-  padding: 26px 40px;
-}
-
-table td {
-  padding: 22px 40px;
+  // padding: 26px 40px;
 }
 
 .iconRedDown {

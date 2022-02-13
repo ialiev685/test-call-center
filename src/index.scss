@@ -2,12 +2,15 @@
 
 @font-face {
   font-family: "SF Pro Display Regular";
-  src: url("../src/fonts/SFPRODISPLAYREGULAR.OTF") format("OTF");
+  src: local("SF Pro Display Regular"),
+    url("../src/fonts/SFPRODISPLAYREGULAR.OTF") format("truetype");
+  // src: local("SF Pro Display Regular"),
+  //   url("../src/fonts/sf-pro-display_regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "SF Pro Display Medium";
-  src: url("../src/fonts/SFPRODISPLAYMEDIUM.OTF") format("OTF");
+  src: url("../src/fonts/SFPRODISPLAYMEDIUM.OTF") format("truetype");
 }
 
 @import "./variables/variables.scss";
@@ -15,5 +18,5 @@
 body {
   background-color: var(--bg-page);
 
-  font-family: "SF Pro Display Medium";
+  font-family: "SF Pro Display Regular";
 }
