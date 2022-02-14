@@ -5,7 +5,7 @@ import { ReactComponent as ArrowIcon } from "./arrowSelect.svg";
 import { ReactComponent as CalendarIcon } from "./caalendar.svg";
 
 export const SelectCategoryDate = (props) => {
-  const { value, onChange, name = "unknow"  } = props;
+  const { value, onChange, name = "unknow" } = props;
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
@@ -91,7 +91,7 @@ export const SelectCategoryDate = (props) => {
       target: {
         value: e.target.dataset.value,
         text: e.target.textContent,
-        name,
+        // name,
       },
     };
 
@@ -99,7 +99,7 @@ export const SelectCategoryDate = (props) => {
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 
-    if (typeof onChange === "function") onChange(newCurrentValue);
+    if (typeof onChange === "function") onChange(newCurrentValue.target);
   };
 
   //список

@@ -9,7 +9,7 @@ export const SelectCategoryTypeCall = (props) => {
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
-    target: { value: 3, text: "Все" },
+    target: { value: 1, text: "Все" },
   });
 
   const [indexHover, setIndexHover] = useState(0);
@@ -21,7 +21,7 @@ export const SelectCategoryTypeCall = (props) => {
 
   useEffect(() => {
     if (value === "Все") {
-      setCurrentValue({ target: { value: 3, text: "Все" } });
+      setCurrentValue({ target: { value: 1, text: "Все" } });
       setCurrentColor(false);
     }
   }, [value]);
@@ -91,7 +91,7 @@ export const SelectCategoryTypeCall = (props) => {
       target: {
         value: e.target.dataset.value,
         text: e.target.textContent,
-        name,
+        // name,
       },
     };
 
@@ -99,11 +99,11 @@ export const SelectCategoryTypeCall = (props) => {
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 
-    if (typeof onChange === "function") onChange(newCurrentValue);
+    if (typeof onChange === "function") onChange(newCurrentValue.target);
   };
 
   //список
-  const listArray = ["Исходящие", "Входящие", "Все"];
+  const listArray = ["Все", "Исходящие", "Входящие"];
 
   return (
     <div ref={wrapperRef} style={{ position: "relative" }}>
@@ -113,18 +113,20 @@ export const SelectCategoryTypeCall = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          width: "100px",
+          width: "85px",
         }}
       >
-        <ArrowIcon style={{ transform: "rotate(-90deg)" }} />
-        <CalendarIcon />
         <span
           data-value={currentValue.target.value}
           style={{ color: "var(--color-text-blue2)" }}
         >
           {currentValue.target.text}
         </span>
-        <ArrowIcon style={{ transform: "rotate(90deg)" }} />
+        <ArrowIcon
+          style={{
+            transform: hiddenList ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        />
       </div>
 
       <div

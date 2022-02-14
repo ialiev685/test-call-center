@@ -91,7 +91,7 @@ export const SelectCategoryClient = (props) => {
       target: {
         value: e.target.dataset.value,
         text: e.target.textContent,
-        name,
+        // name,
       },
     };
 
@@ -99,26 +99,23 @@ export const SelectCategoryClient = (props) => {
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 
-    if (typeof onChange === "function") onChange(newCurrentValue);
+    if (typeof onChange === "function") onChange(newCurrentValue.target);
   };
 
   //список
   //data
   // const listArray = ["Исходящие", "Входящие", "Все"];
-  const listArray = [];
+  const listArray = ["Все"];
   data.forEach(({ contact_name, contact_company }) => {
-    const contragent = `${contact_name} ${contact_company}`;
+    const contragent = `${contact_name} | ${contact_company}`;
     const normalizeContragent = contragent.trim();
     if (
       !listArray.includes(normalizeContragent) &&
-      normalizeContragent !== ""
+      normalizeContragent !== "|"
     ) {
-      console.log(normalizeContragent);
       listArray.push(normalizeContragent);
     }
   }, []);
-
-  console.log(listArray);
 
   return (
     <div ref={wrapperRef} style={{ position: "relative" }}>
@@ -128,18 +125,19 @@ export const SelectCategoryClient = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          width: "100px",
+          width: "200px",
+          cursor: "pointer",
         }}
       >
-        <ArrowIcon style={{ transform: "rotate(-90deg)" }} />
-        <CalendarIcon />
         <span
           data-value={currentValue.target.value}
           style={{ color: "var(--color-text-blue2)" }}
         >
           {currentValue.target.text}
         </span>
-        <ArrowIcon style={{ transform: "rotate(90deg)" }} />
+        <ArrowIcon
+          style={{ transform: hiddenList ? "rotate(180deg)" : "rotate(0deg)" }}
+        />
       </div>
 
       <div
