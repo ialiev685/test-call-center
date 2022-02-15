@@ -3,6 +3,22 @@ import React, { useState, useEffect, useRef } from "react";
 //icon
 import { ReactComponent as ArrowIcon } from "./arrowSelect.svg";
 import { ReactComponent as CalendarIcon } from "./caalendar.svg";
+//components
+import Datetime from "react-datetime";
+import "react-datetime/css/react-datetime.css";
+
+const inputDateProps = {
+  style: {
+    backgroundColor: "white",
+    border: "none",
+    outline: "none",
+    width: "75px",
+    height: "28px",
+    fontSize: "14px",
+    color: "var(--color-text)",
+    borderBottom: "1px solid var(--color-text-primary)",
+  },
+};
 
 export const SelectCategoryDate = (props) => {
   const { value, onChange, name = "unknow" } = props;
@@ -11,6 +27,9 @@ export const SelectCategoryDate = (props) => {
   const [currentValue, setCurrentValue] = useState({
     target: { value: 1, text: "3 дня" },
   });
+
+  const [currentValueDateFrom, setCurrentValueDateFrom] = useState("");
+  const [currentValueDateTo, setCurrentValueDateTo] = useState("");
 
   const [indexHover, setIndexHover] = useState(0);
 
@@ -95,15 +114,48 @@ export const SelectCategoryDate = (props) => {
       },
     };
 
+    if (
+      e.target.textContent === "Укажите дату" &&
+      (currentValueDateFrom === "" || currentValueDateTo === "")
+    ) {
+      return;
+    }
+
     if (newCurrentValue.target.value !== 0) setCurrentColor(true);
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 
+    if (
+      e.target.textContent === "Укажите дату" &&
+      currentValueDateFrom !== "" &&
+      currentValueDateTo !== ""
+    ) {
+      const periodDateSend = {
+        valueOne: currentValueDateFrom,
+        valueTwo: currentValueDateTo,
+        text: e.target.textContent,
+      };
+      onChange(periodDateSend);
+      return;
+    }
     if (typeof onChange === "function") onChange(newCurrentValue.target);
   };
 
+  const handleChooseDate = (e) => {
+    const newCurrentValue = {
+      target: {
+        value: e.target.value,
+        name: e.target.name,
+      },
+    };
+
+    const { value } = newCurrentValue.target;
+    if (e.target.name === "date1") setCurrentValueDateFrom(value);
+    if (e.target.name === "date2") setCurrentValueDateTo(value);
+  };
+
   //список
-  const listArray = ["3 дня", "Неделя", "Месяц", "Год", "Указать даты"];
+  const listArray = ["3 дня", "Неделя", "Месяц", "Год", "Укажите дату"];
 
   return (
     <div ref={wrapperRef} style={{ position: "relative" }}>
@@ -162,7 +214,7 @@ export const SelectCategoryDate = (props) => {
                   padding: "8px 20px",
                   cursor: "pointer",
                   borderRadius: "4px",
-                  color: "var(--color-text)",
+                  color: "var(--color-text-primary)",
                 }}
                 data-value={index + 1}
                 onClick={handleChoose}
@@ -171,6 +223,51 @@ export const SelectCategoryDate = (props) => {
               </li>
             );
           })}
+          <li
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "8px 10px 8px 20px",
+              color: "var(--color-text-primary)",
+            }}
+          >
+            <Datetime
+              dateFormat="DD.MM.YYYY"
+              timeFormat={false}
+              initialValue={currentValueDateFrom}
+              closeOnSelect={true}
+              inputProps={inputDateProps}
+              onChange={(value) => {
+                const e = {
+                  target: {
+                    value: value._d,
+                    // id: "date",
+                    name: "date1",
+                  },
+                };
+                handleChooseDate(e);
+              }}
+            />
+            -
+            <Datetime
+              dateFormat="DD.MM.YYYY"
+              timeFormat={false}
+              initialValue={currentValueDateTo}
+              closeOnSelect={true}
+              inputProps={inputDateProps}
+              onChange={(value) => {
+                const e = {
+                  target: {
+                    value: value._d,
+                    // id: "date",
+                    name: "date2",
+                  },
+                };
+                handleChooseDate(e);
+              }}
+            />
+            <CalendarIcon />
+          </li>
         </ul>
       </div>
     </div>

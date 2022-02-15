@@ -24,12 +24,26 @@ const getListTypeCalls = (value, data) => {
 };
 
 const getPeriodListCalls = (period, data) => {
+  if (period.text === "Укажите дату") {
+    const filteredData = data.filter(({ date_notime }) => {
+      const dateCheckNormalize = new Date(date_notime).toLocaleDateString();
+      const dateFrom = period.valueOne.toLocaleDateString();
+      const dateTo = period.valueTwo.toLocaleDateString();
+
+      return dateCheckNormalize >= dateFrom && dateCheckNormalize <= dateTo;
+    });
+
+    return filteredData;
+  }
+
   const codesArr = [
     { val: 3, name: "3 дня" },
     { val: 7, name: "Неделя" },
     { val: 31, name: "Месяц" },
     { val: 366, name: "Год" },
   ];
+
+  //{ valOne: period.valueOne, valTwo: period.valueTwo, name: "Укажите дату" },
 
   const selectValue = codesArr.find(({ _, name }) => period.text === name);
 
