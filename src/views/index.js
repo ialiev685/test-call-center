@@ -1,1 +1,1 @@
-export { Calls } from "./Calls";
+export { CallsView } from "./CallsView";

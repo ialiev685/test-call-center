@@ -8,6 +8,13 @@
   --color-blue2: #005ff8;
   --color-blue-light: #deeafe;
   --color-gray3: #adbfdf;
+  --color-blue-dark: #091336;
+  --color-gray4: rgba(255, 255, 255, 0.6);
+  --color-gray5: #899cb1;
+  --color-white-transparent: rgba(216, 228, 251, 0.32);
+  --shadow-header: 0px 4px 5px #e9edf3;
+  --color-yellow: #ffd500;
+  --shadow-yellow: 0px 3px 8px rgba(237, 218, 1, 0.5);
 
   --font-family-regular: "SF Pro Display Regular";
   --font-family-medium: "SF Pro Display Medium";
@@ -16,12 +23,19 @@
 
   --color-text-primary: var(--color-black);
   --color-text-secondary: var(--color-gray2);
+  --color-text-white: var(--color-white);
   --color-text-gray: var(--color-gray3);
   --color-text-blue: var(--color-blue);
   --color-text-blue2: var(--color-blue2);
+  --color-text-gray4: var(--color-gray4);
+  --color-text-gray5: var(--color-gray5);
 
   --bg-page: var(--color-gray);
   --bg-table: var(--color-white);
   --bg-button-record: var(--color-white);
   --bg-hover: var(--color-blue-light);
+  --bg-navigation: var(--color-blue-dark);
+  --bg-navigation-link: var(--color-white-transparent);
+  --bg-header: var(--color-white);
+  --bg-yellow: var(--color-yellow);
 }

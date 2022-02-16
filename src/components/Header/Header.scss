@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+
+  align-items: center;
+
+  height: 64px;
+
+  background-color: var(--bg-header);
+
+  box-shadow: var(--shadow-header);
+
+  &__clock {
+    margin-left: 360px;
+
+    color: var(--color-text-gray5);
+  }
+}
