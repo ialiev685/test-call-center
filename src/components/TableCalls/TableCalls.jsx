@@ -99,7 +99,6 @@ export const TableCalls = ({ data }) => {
     return "unknow";
   };
 
-  console.log("filter", filterList);
   return (
     <div className="wrapper-table">
       <table className="table">
