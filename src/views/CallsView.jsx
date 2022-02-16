@@ -4,7 +4,7 @@ import { BoardCalls } from "../components/BoardCalls";
 
 export const CallsView = () => {
   return (
-    <div style={{ padding: "60px", marginLeft: "240px" }}>
+    <div style={{ padding: "60px 60px 0", marginLeft: "240px" }}>
       <BoardCalls />
     </div>
   );

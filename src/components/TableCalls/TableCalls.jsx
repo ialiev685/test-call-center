@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+
 //style
 import "./TableCalls.scss";
 //components
@@ -133,6 +134,7 @@ export const TableCalls = ({ data }) => {
             <th className="table__head-duration">Длительность</th>
           </tr>
         </thead>
+
         <tbody>
           {filterList &&
             filterList.map((item) => {

@@ -21,7 +21,7 @@ const inputDateProps = {
 };
 
 export const SelectCategoryDate = (props) => {
-  const { value, onChange, name = "unknow", style } = props;
+  const { value, onChange, style } = props;
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
@@ -33,7 +33,7 @@ export const SelectCategoryDate = (props) => {
 
   const [indexHover, setIndexHover] = useState(0);
 
-  const [currentColor, setCurrentColor] = useState(false);
+  // const [currentColor, setCurrentColor] = useState(false);
 
   const wrapperRef = useRef();
   const itemRef = useRef();
@@ -41,7 +41,7 @@ export const SelectCategoryDate = (props) => {
   useEffect(() => {
     if (value === "3 дня") {
       setCurrentValue({ target: { value: 1, text: "3 дня" } });
-      setCurrentColor(false);
+      // setCurrentColor(false);
     }
   }, [value]);
 
@@ -121,7 +121,7 @@ export const SelectCategoryDate = (props) => {
       return;
     }
 
-    if (newCurrentValue.target.value !== 0) setCurrentColor(true);
+    // if (newCurrentValue.target.value !== 0) setCurrentColor(true);
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 

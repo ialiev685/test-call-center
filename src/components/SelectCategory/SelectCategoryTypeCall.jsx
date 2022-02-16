@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ReactComponent as ArrowIcon } from "./arrowSelect.svg";
 
 export const SelectCategoryTypeCall = (props) => {
-  const { value, onChange, name = "unknow", style } = props;
+  const { value, onChange, style } = props;
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
@@ -13,7 +13,7 @@ export const SelectCategoryTypeCall = (props) => {
 
   const [indexHover, setIndexHover] = useState(0);
 
-  const [currentColor, setCurrentColor] = useState(false);
+  // const [currentColor, setCurrentColor] = useState(false);
 
   const wrapperRef = useRef();
   const itemRef = useRef();
@@ -21,7 +21,7 @@ export const SelectCategoryTypeCall = (props) => {
   useEffect(() => {
     if (value === "Все") {
       setCurrentValue({ target: { value: 1, text: "Все" } });
-      setCurrentColor(false);
+      // setCurrentColor(false);
     }
   }, [value]);
 
@@ -94,7 +94,7 @@ export const SelectCategoryTypeCall = (props) => {
       },
     };
 
-    if (newCurrentValue.target.value !== 0) setCurrentColor(true);
+    // if (newCurrentValue.target.value !== 0) setCurrentColor(true);
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 

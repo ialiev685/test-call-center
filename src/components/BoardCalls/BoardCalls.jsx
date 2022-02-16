@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 //API
-import { fetchListCalls, fetchRecordCall } from "../../services/API";
+import { fetchListCalls } from "../../services/API";
 //components
 import { TableCalls } from "../TableCalls";
 

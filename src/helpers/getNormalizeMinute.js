@@ -1,5 +1,3 @@
-import React from "react";
-
 export const getNormalizeMinute = (data) => {
   const minutes = Math.floor(data / 60);
   const normalizeMinute = minutes < 10 ? "0" + minutes : minutes;
