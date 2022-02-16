@@ -2,10 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 
 //icon
 import { ReactComponent as ArrowIcon } from "./arrowSelect.svg";
-import { ReactComponent as CalendarIcon } from "./caalendar.svg";
 
 export const SelectCategoryTypeCall = (props) => {
-  const { value, onChange, name = "unknow" } = props;
+  const { value, onChange, name = "unknow", style } = props;
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
@@ -106,19 +105,19 @@ export const SelectCategoryTypeCall = (props) => {
   const listArray = ["Все", "Исходящие", "Входящие"];
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative" }}>
+    <div ref={wrapperRef} style={{ position: "relative", ...style }}>
       <div
         onClick={handleShowList}
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          width: "85px",
+          cursor: "pointer",
         }}
       >
         <span
           data-value={currentValue.target.value}
-          style={{ color: "var(--color-text-blue2)" }}
+          style={{ color: "var(--color-text-blue2)", marginRight: "8px" }}
         >
           {currentValue.target.text}
         </span>

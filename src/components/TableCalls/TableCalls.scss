@@ -19,7 +19,7 @@
     font-size: 14px;
     line-height: 1;
 
-    padding: 26px 0 20px;
+    padding: 46px 0 20px;
 
     text-align: left;
   }
@@ -47,11 +47,16 @@
   }
 
   &__head-type {
-    min-width: 55px;
+    // width: 55px;
+    min-width: 100px;
+    position: relative;
   }
 
   &__head-time {
-    width: 90px;
+    // width: 90px;
+    min-width: 130px;
+
+    position: relative;
   }
 
   &__head-person {
@@ -60,6 +65,8 @@
 
   &__head-calls {
     width: 330px;
+
+    position: relative;
   }
 
   &__head-source {

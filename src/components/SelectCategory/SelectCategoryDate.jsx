@@ -21,7 +21,7 @@ const inputDateProps = {
 };
 
 export const SelectCategoryDate = (props) => {
-  const { value, onChange, name = "unknow" } = props;
+  const { value, onChange, name = "unknow", style } = props;
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
@@ -158,14 +158,15 @@ export const SelectCategoryDate = (props) => {
   const listArray = ["3 дня", "Неделя", "Месяц", "Год", "Укажите дату"];
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative" }}>
+    <div ref={wrapperRef} style={{ position: "relative", ...style }}>
       <div
         onClick={handleShowList}
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          width: "100px",
+          minWidth: "130px",
+          cursor: "pointer",
         }}
       >
         <ArrowIcon style={{ transform: "rotate(-90deg)" }} />

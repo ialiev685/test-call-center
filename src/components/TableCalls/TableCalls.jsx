@@ -106,16 +106,26 @@ export const TableCalls = ({ data }) => {
           <tr className="table__item">
             <th className="table__head-space"></th>
             <th className="table__head-type">
-              <SelectCategoryTypeCall onChange={setTypeCalls} />
+              <SelectCategoryTypeCall
+                onChange={setTypeCalls}
+                style={{ position: "absolute", top: "20px", left: 0 }}
+              />
               Тип
             </th>
             <th className="table__head-time">
-              <SelectCategoryDate onChange={setDate} />
+              <SelectCategoryDate
+                onChange={setDate}
+                style={{ position: "absolute", top: "20px", left: 0 }}
+              />
               Время
             </th>
             <th className="table__head-person">Сотрудник</th>
             <th className="table__head-calls">
-              <SelectCategoryClient onChange={setClient} data={filterList} />
+              <SelectCategoryClient
+                onChange={setClient}
+                data={filterList}
+                style={{ position: "absolute", top: "20px", left: 0 }}
+              />
               Звонки
             </th>
             <th className="table__head-source">Источник</th>
