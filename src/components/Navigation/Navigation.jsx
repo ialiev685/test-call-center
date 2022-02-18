@@ -17,7 +17,7 @@ const styleLink = ({ isActive }) => {
     textDecoration: "none",
     color: isActive ? "var(--color-text-white)" : "var(--color-text-gray4)",
 
-    padding: "14px 12px",
+    padding: "14px",
     backgroundColor: isActive ? "var(--bg-navigation-link)" : "transparent",
   };
 };
@@ -45,6 +45,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="total"
                   style={{
+                    width: "22px",
+                    height: "12px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -74,6 +76,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="order"
                   style={{
+                    width: "23px",
+                    height: "13px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -103,6 +107,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="message"
                   style={{
+                    width: "20px",
+                    height: "16px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -132,6 +138,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="call"
                   style={{
+                    width: "18px",
+                    height: "18px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -161,6 +169,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="clients"
                   style={{
+                    width: "20px",
+                    height: "14px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -190,6 +200,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="doc"
                   style={{
+                    width: "16px",
+                    height: "20px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -219,6 +231,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="person"
                   style={{
+                    width: "16px",
+                    height: "16px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -248,6 +262,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="report"
                   style={{
+                    width: "20px",
+                    height: "19px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -277,6 +293,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="data"
                   style={{
+                    width: "18px",
+                    height: "21px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",
@@ -306,6 +324,8 @@ export const Navigation = ({ style }) => {
                 <IconsNavigation
                   name="settings"
                   style={{
+                    width: "19px",
+                    height: "20px",
                     fill: isActive
                       ? "var(--color-text-white)"
                       : "var(--color-text-gray4)",

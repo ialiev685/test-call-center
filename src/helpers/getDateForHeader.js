@@ -26,7 +26,7 @@ export const getDateForHeader = () => {
   const dateNow = new Date();
 
   const date = dateNow.getDate();
-  const day = dateNow.getDay();
+  const day = dateNow.getDay() - 1;
   const month = dateNow.getMonth();
 
   return `${arrDay[day]}, ${date} ${arrMonth[month]}`;

@@ -55,7 +55,7 @@ const getPeriodListCalls = (period, data) => {
 };
 
 const getCurrentClienCall = (client, data) => {
-  if (client.text === "Все") return data;
+  if (client.text === "Все клиенты") return data;
 
   const selectValue = client.text.split("|");
 

@@ -8,7 +8,7 @@ export const SelectCategoryClient = (props) => {
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
-    target: { value: 0, text: "Все" },
+    target: { value: 0, text: "Все клиенты" },
   });
 
   const [indexHover, setIndexHover] = useState(0);
@@ -19,8 +19,8 @@ export const SelectCategoryClient = (props) => {
   const itemRef = useRef();
 
   useEffect(() => {
-    if (value === "Все") {
-      setCurrentValue({ target: { value: 0, text: "Все" } });
+    if (value === "Все клиенты") {
+      setCurrentValue({ target: { value: 0, text: "Все клиенты" } });
       // setCurrentColor(false);
     }
   }, [value]);
@@ -101,10 +101,7 @@ export const SelectCategoryClient = (props) => {
     if (typeof onChange === "function") onChange(newCurrentValue.target);
   };
 
-  //список
-  //data
-  // const listArray = ["Исходящие", "Входящие", "Все"];
-  const listArray = ["Все"];
+  const listArray = ["Все клиенты"];
   data.forEach(({ contact_name, contact_company }) => {
     const contragent = `${contact_name} | ${contact_company}`;
     const normalizeContragent = contragent.trim();
@@ -117,7 +114,15 @@ export const SelectCategoryClient = (props) => {
   }, []);
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative", ...style }}>
+    <div
+      ref={wrapperRef}
+      style={{
+        position: "relative",
+        width: "110px",
+
+        ...style,
+      }}
+    >
       <div
         onClick={handleShowList}
         style={{
@@ -130,7 +135,12 @@ export const SelectCategoryClient = (props) => {
       >
         <span
           data-value={currentValue.target.value}
-          style={{ color: "var(--color-text-blue2)", marginRight: "8px" }}
+          style={{
+            color: "var(--color-text-blue2)",
+            marginRight: "8px",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
         >
           {currentValue.target.text}
         </span>
@@ -147,6 +157,7 @@ export const SelectCategoryClient = (props) => {
           zIndex: 5,
           bottom: 0,
           top: "100%",
+          right: 0,
           width: "204px",
         }}
       >
