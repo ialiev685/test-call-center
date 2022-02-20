@@ -11,7 +11,7 @@ import { apiFilter } from "../../helpers";
 import "./FilterBoard.scss";
 
 export const FilterBoard = ({ data, setFilter, filterList }) => {
-  const [typeCalls, setTypeCalls] = useState({ value: 1, text: "Все" });
+  const [typeCalls, setTypeCalls] = useState({ value: 1, text: "Все типы" });
   const [date, setDate] = useState({ value: 1, text: "3 дня" });
   const [client, setClient] = useState({ value: 1, text: "Все клиенты" });
 

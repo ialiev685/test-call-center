@@ -7,7 +7,9 @@ const getListTypeCalls = (value, data) => {
     { val: "0", name: "Исходящие" },
   ];
 
-  if (value.text === "Все") return data;
+  console.log(value);
+
+  if (value.text === "Все типы") return data;
   // if (value.text === "Все") {
   //   const filteredData = data.filter(
   //     ({ in_out }) => in_out === "0" || in_out === "1"

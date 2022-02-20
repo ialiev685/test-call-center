@@ -14,19 +14,19 @@ export const getDateForHeader = () => {
     "Декабрь",
   ];
   const arrDay = [
+    "Воскресенье",
     "Понедельник",
     "Вторник",
     "Среда",
     "Четверг",
     "Пятница",
     "Суббота",
-    "Воскресенье",
   ];
 
   const dateNow = new Date();
 
   const date = dateNow.getDate();
-  const day = dateNow.getDay() - 1;
+  const day = dateNow.getDay();
   const month = dateNow.getMonth();
 
   return `${arrDay[day]}, ${date} ${arrMonth[month]}`;

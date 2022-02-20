@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-
 //icon
 import { ReactComponent as ArrowIcon } from "./arrowSelect.svg";
+//style
+import "./SelectCategory.scss";
 
 export const SelectCategoryTypeCall = (props) => {
   const { value, onChange, style } = props;
 
   const [hiddenList, setHiddenList] = useState(true);
   const [currentValue, setCurrentValue] = useState({
-    target: { value: 1, text: "Все" },
+    target: { value: 1, text: "Все типы" },
   });
 
   const [indexHover, setIndexHover] = useState(0);
@@ -19,8 +20,8 @@ export const SelectCategoryTypeCall = (props) => {
   const itemRef = useRef();
 
   useEffect(() => {
-    if (value === "Все") {
-      setCurrentValue({ target: { value: 1, text: "Все" } });
+    if (value === "Все типы") {
+      setCurrentValue({ target: { value: 1, text: "Все типы" } });
       // setCurrentColor(false);
     }
   }, [value]);
@@ -50,30 +51,34 @@ export const SelectCategoryTypeCall = (props) => {
         .forEach((_, index) => {
           itemRef.current.children[index].style.backgroundColor =
             "var(--bg-table)";
+          itemRef.current.children[index].style.color =
+            "var(--color-text-secondary)";
         });
 
       itemRef.current.children[indexHover - 1].style.backgroundColor =
         "var(--bg-hover)";
+      itemRef.current.children[indexHover - 1].style.color =
+        "var(--color-text-blue2)";
     }
   }, [hiddenList, indexHover]);
 
   //сброс и выделение цветом выбранной категории в меню
-  useEffect(() => {
-    if (!hiddenList) {
-      Array(itemRef.current.children.length)
-        .fill()
-        .forEach((_, index) => {
-          const textContent = itemRef.current.children[index].textContent;
-          itemRef.current.children[index].style.color =
-            "var(--color-text-primary)";
+  // useEffect(() => {
+  //   if (!hiddenList) {
+  //     Array(itemRef.current.children.length)
+  //       .fill()
+  //       .forEach((_, index) => {
+  //         const textContent = itemRef.current.children[index].textContent;
+  //         itemRef.current.children[index].style.color =
+  //           "var(--color-text-primary)";
 
-          if (textContent === currentValue.target.text) {
-            itemRef.current.children[index].style.color =
-              "var(--color-text-blue2)";
-          }
-        });
-    }
-  }, [currentValue.target.text, hiddenList]);
+  //         if (textContent === currentValue.target.text) {
+  //           itemRef.current.children[index].style.color =
+  //             "var(--color-text-blue2)";
+  //         }
+  //       });
+  //   }
+  // }, [currentValue.target.text, hiddenList]);
 
   const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
@@ -82,6 +87,7 @@ export const SelectCategoryTypeCall = (props) => {
   };
 
   const handleShowList = (e) => {
+    console.log(e);
     setHiddenList((prevState) => !prevState);
   };
 
@@ -102,12 +108,22 @@ export const SelectCategoryTypeCall = (props) => {
   };
 
   //список
-  const listArray = ["Все", "Исходящие", "Входящие"];
+  const listArray = ["Все типы", "Исходящие", "Входящие"];
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative", ...style }}>
+    <div
+      ref={wrapperRef}
+      style={{
+        position: "relative",
+        ...style,
+        minWidth: "80px",
+        fontSize: "14px",
+        color: "var(--color-text-secondary)",
+      }}
+    >
       <div
         onClick={handleShowList}
+        className="select-header"
         style={{
           display: "flex",
           alignItems: "center",
@@ -117,13 +133,14 @@ export const SelectCategoryTypeCall = (props) => {
       >
         <span
           data-value={currentValue.target.value}
-          style={{ color: "var(--color-text-blue2)", marginRight: "8px" }}
+          style={{ marginRight: "8px" }}
         >
           {currentValue.target.text}
         </span>
         <ArrowIcon
           style={{
             transform: hiddenList ? "rotate(180deg)" : "rotate(0deg)",
+            fill: "currentColor",
           }}
         />
       </div>
@@ -135,6 +152,7 @@ export const SelectCategoryTypeCall = (props) => {
           position: "absolute",
           zIndex: 5,
           bottom: 0,
+          right: 0,
           top: "100%",
           width: "204px",
         }}

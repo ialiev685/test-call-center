@@ -70,30 +70,34 @@ export const SelectCategoryDate = (props) => {
         .forEach((_, index) => {
           itemRef.current.children[index].style.backgroundColor =
             "var(--bg-table)";
+          itemRef.current.children[index].style.color =
+            "var(--color-text-secondary)";
         });
 
       itemRef.current.children[indexHover - 1].style.backgroundColor =
         "var(--bg-hover)";
+      itemRef.current.children[indexHover - 1].style.color =
+        "var(--color-text-blue2)";
     }
   }, [hiddenList, indexHover]);
 
   //сброс и выделение цветом выбранной категории в меню
-  useEffect(() => {
-    if (!hiddenList) {
-      Array(itemRef.current.children.length)
-        .fill()
-        .forEach((_, index) => {
-          const textContent = itemRef.current.children[index].textContent;
-          itemRef.current.children[index].style.color =
-            "var(--color-text-primary)";
+  // useEffect(() => {
+  //   if (!hiddenList) {
+  //     Array(itemRef.current.children.length)
+  //       .fill()
+  //       .forEach((_, index) => {
+  //         const textContent = itemRef.current.children[index].textContent;
+  //         itemRef.current.children[index].style.color =
+  //           "var(--color-text-primary)";
 
-          if (textContent === currentValue.target.text) {
-            itemRef.current.children[index].style.color =
-              "var(--color-text-blue2)";
-          }
-        });
-    }
-  }, [currentValue.target.text, hiddenList]);
+  //         if (textContent === currentValue.target.text) {
+  //           itemRef.current.children[index].style.color =
+  //             "var(--color-text-blue2)";
+  //         }
+  //       });
+  //   }
+  // }, [currentValue.target.text, hiddenList]);
 
   const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
@@ -158,26 +162,36 @@ export const SelectCategoryDate = (props) => {
   const listArray = ["3 дня", "Неделя", "Месяц", "Год", "Укажите дату"];
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative", ...style }}>
+    <div
+      ref={wrapperRef}
+      style={{
+        position: "relative",
+        ...style,
+        fontSize: "14px",
+        minWidth: "115px",
+        color: "var(--color-text-secondary)",
+      }}
+    >
       <div
         onClick={handleShowList}
+        className="select-header"
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          minWidth: "130px",
           cursor: "pointer",
         }}
       >
-        <ArrowIcon style={{ transform: "rotate(-90deg)" }} />
-        <CalendarIcon />
-        <span
-          data-value={currentValue.target.value}
-          style={{ color: "var(--color-text-blue2)" }}
-        >
+        <ArrowIcon
+          style={{ transform: "rotate(-90deg)", fill: "currentColor" }}
+        />
+        <CalendarIcon style={{ fill: "currentColor" }} />
+        <span data-value={currentValue.target.value}>
           {currentValue.target.text}
         </span>
-        <ArrowIcon style={{ transform: "rotate(90deg)" }} />
+        <ArrowIcon
+          style={{ transform: "rotate(90deg)", fill: "currentColor" }}
+        />
       </div>
 
       <div
@@ -187,6 +201,7 @@ export const SelectCategoryDate = (props) => {
           position: "absolute",
           zIndex: 5,
           bottom: 0,
+          right: 0,
           top: "100%",
           width: "204px",
         }}

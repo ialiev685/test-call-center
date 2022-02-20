@@ -50,30 +50,34 @@ export const SelectCategoryClient = (props) => {
         .forEach((_, index) => {
           itemRef.current.children[index].style.backgroundColor =
             "var(--bg-table)";
+          itemRef.current.children[index].style.color =
+            "var(--color-text-secondary)";
         });
 
       itemRef.current.children[indexHover - 1].style.backgroundColor =
         "var(--bg-hover)";
+      itemRef.current.children[indexHover - 1].style.color =
+        "var(--color-text-blue2)";
     }
   }, [hiddenList, indexHover]);
 
   //сброс и выделение цветом выбранной категории в меню
-  useEffect(() => {
-    if (!hiddenList) {
-      Array(itemRef.current.children.length)
-        .fill()
-        .forEach((_, index) => {
-          const textContent = itemRef.current.children[index].textContent;
-          itemRef.current.children[index].style.color =
-            "var(--color-text-primary)";
+  // useEffect(() => {
+  //   if (!hiddenList) {
+  //     Array(itemRef.current.children.length)
+  //       .fill()
+  //       .forEach((_, index) => {
+  //         const textContent = itemRef.current.children[index].textContent;
+  //         itemRef.current.children[index].style.color =
+  //           "var(--color-text-primary)";
 
-          if (textContent === currentValue.target.text) {
-            itemRef.current.children[index].style.color =
-              "var(--color-text-blue2)";
-          }
-        });
-    }
-  }, [currentValue.target.text, hiddenList]);
+  //         if (textContent === currentValue.target.text) {
+  //           itemRef.current.children[index].style.color =
+  //             "var(--color-text-blue2)";
+  //         }
+  //       });
+  //   }
+  // }, [currentValue.target.text, hiddenList]);
 
   const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
@@ -119,12 +123,14 @@ export const SelectCategoryClient = (props) => {
       style={{
         position: "relative",
         width: "110px",
-
+        fontSize: "14px",
+        color: "var(--color-text-secondary)",
         ...style,
       }}
     >
       <div
         onClick={handleShowList}
+        className="select-header"
         style={{
           display: "flex",
           alignItems: "center",
@@ -136,7 +142,6 @@ export const SelectCategoryClient = (props) => {
         <span
           data-value={currentValue.target.value}
           style={{
-            color: "var(--color-text-blue2)",
             marginRight: "8px",
             whiteSpace: "nowrap",
             overflow: "hidden",
