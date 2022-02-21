@@ -81,23 +81,27 @@ export const SelectCategoryDate = (props) => {
     }
   }, [hiddenList, indexHover]);
 
-  //сброс и выделение цветом выбранной категории в меню
-  // useEffect(() => {
-  //   if (!hiddenList) {
-  //     Array(itemRef.current.children.length)
-  //       .fill()
-  //       .forEach((_, index) => {
-  //         const textContent = itemRef.current.children[index].textContent;
-  //         itemRef.current.children[index].style.color =
-  //           "var(--color-text-primary)";
+  useEffect(() => {
+    if (currentValueDateFrom !== "" && currentValueDateTo !== "") {
+      const periodDateSend = {
+        target: {
+          valueOne: currentValueDateFrom,
+          valueTwo: currentValueDateTo,
+          value: 5,
+          text: `${new Date(
+            currentValueDateFrom
+          ).toLocaleDateString()}-${new Date(
+            currentValueDateTo
+          ).toLocaleDateString()}`,
+        },
+      };
 
-  //         if (textContent === currentValue.target.text) {
-  //           itemRef.current.children[index].style.color =
-  //             "var(--color-text-blue2)";
-  //         }
-  //       });
-  //   }
-  // }, [currentValue.target.text, hiddenList]);
+      setCurrentValue(periodDateSend);
+      setHiddenList(true);
+      onChange(periodDateSend.target);
+      return;
+    }
+  }, [currentValueDateFrom, currentValueDateTo, onChange]);
 
   const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
@@ -118,30 +122,10 @@ export const SelectCategoryDate = (props) => {
       },
     };
 
-    if (
-      e.target.textContent === "Укажите дату" &&
-      (currentValueDateFrom === "" || currentValueDateTo === "")
-    ) {
-      return;
-    }
-
     // if (newCurrentValue.target.value !== 0) setCurrentColor(true);
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 
-    if (
-      e.target.textContent === "Укажите дату" &&
-      currentValueDateFrom !== "" &&
-      currentValueDateTo !== ""
-    ) {
-      const periodDateSend = {
-        valueOne: currentValueDateFrom,
-        valueTwo: currentValueDateTo,
-        text: e.target.textContent,
-      };
-      onChange(periodDateSend);
-      return;
-    }
     if (typeof onChange === "function") onChange(newCurrentValue.target);
   };
 
@@ -159,7 +143,7 @@ export const SelectCategoryDate = (props) => {
   };
 
   //список
-  const listArray = ["3 дня", "Неделя", "Месяц", "Год", "Укажите дату"];
+  const listArray = ["3 дня", "Неделя", "Месяц", "Год"];
 
   return (
     <div
@@ -168,7 +152,7 @@ export const SelectCategoryDate = (props) => {
         position: "relative",
         ...style,
         fontSize: "14px",
-        minWidth: "115px",
+
         color: "var(--color-text-secondary)",
       }}
     >
@@ -178,6 +162,7 @@ export const SelectCategoryDate = (props) => {
         style={{
           display: "flex",
           alignItems: "center",
+          minWidth: "115px",
           justifyContent: "space-between",
           cursor: "pointer",
         }}
@@ -230,7 +215,6 @@ export const SelectCategoryDate = (props) => {
                   padding: "8px 20px",
                   cursor: "pointer",
                   borderRadius: "4px",
-                  color: "var(--color-text-primary)",
                 }}
                 data-value={index + 1}
                 onClick={handleChoose}
@@ -244,7 +228,15 @@ export const SelectCategoryDate = (props) => {
               display: "flex",
               alignItems: "center",
               padding: "8px 10px 8px 20px",
-              color: "var(--color-text-primary)",
+            }}
+          >
+            Укажите дату
+          </li>
+          <li
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "8px 10px 8px 20px",
             }}
           >
             <Datetime

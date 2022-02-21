@@ -62,24 +62,6 @@ export const SelectCategoryTypeCall = (props) => {
     }
   }, [hiddenList, indexHover]);
 
-  //сброс и выделение цветом выбранной категории в меню
-  // useEffect(() => {
-  //   if (!hiddenList) {
-  //     Array(itemRef.current.children.length)
-  //       .fill()
-  //       .forEach((_, index) => {
-  //         const textContent = itemRef.current.children[index].textContent;
-  //         itemRef.current.children[index].style.color =
-  //           "var(--color-text-primary)";
-
-  //         if (textContent === currentValue.target.text) {
-  //           itemRef.current.children[index].style.color =
-  //             "var(--color-text-blue2)";
-  //         }
-  //       });
-  //   }
-  // }, [currentValue.target.text, hiddenList]);
-
   const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
       setHiddenList(true);
@@ -87,7 +69,7 @@ export const SelectCategoryTypeCall = (props) => {
   };
 
   const handleShowList = (e) => {
-    console.log(e);
+ 
     setHiddenList((prevState) => !prevState);
   };
 
@@ -116,7 +98,7 @@ export const SelectCategoryTypeCall = (props) => {
       style={{
         position: "relative",
         ...style,
-        minWidth: "80px",
+
         fontSize: "14px",
         color: "var(--color-text-secondary)",
       }}
@@ -128,6 +110,7 @@ export const SelectCategoryTypeCall = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          minWidth: "80px",
           cursor: "pointer",
         }}
       >
@@ -181,7 +164,6 @@ export const SelectCategoryTypeCall = (props) => {
                   padding: "8px 20px",
                   cursor: "pointer",
                   borderRadius: "4px",
-                  color: "var(--color-text-primary)",
                 }}
                 data-value={index + 1}
                 onClick={handleChoose}

@@ -61,24 +61,6 @@ export const SelectCategoryClient = (props) => {
     }
   }, [hiddenList, indexHover]);
 
-  //сброс и выделение цветом выбранной категории в меню
-  // useEffect(() => {
-  //   if (!hiddenList) {
-  //     Array(itemRef.current.children.length)
-  //       .fill()
-  //       .forEach((_, index) => {
-  //         const textContent = itemRef.current.children[index].textContent;
-  //         itemRef.current.children[index].style.color =
-  //           "var(--color-text-primary)";
-
-  //         if (textContent === currentValue.target.text) {
-  //           itemRef.current.children[index].style.color =
-  //             "var(--color-text-blue2)";
-  //         }
-  //       });
-  //   }
-  // }, [currentValue.target.text, hiddenList]);
-
   const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
       setHiddenList(true);
@@ -122,7 +104,7 @@ export const SelectCategoryClient = (props) => {
       ref={wrapperRef}
       style={{
         position: "relative",
-        width: "110px",
+
         fontSize: "14px",
         color: "var(--color-text-secondary)",
         ...style,
@@ -135,7 +117,7 @@ export const SelectCategoryClient = (props) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          // width: "200px",
+          width: "110px",
           cursor: "pointer",
         }}
       >
@@ -150,7 +132,10 @@ export const SelectCategoryClient = (props) => {
           {currentValue.target.text}
         </span>
         <ArrowIcon
-          style={{ transform: hiddenList ? "rotate(180deg)" : "rotate(0deg)" }}
+          style={{
+            transform: hiddenList ? "rotate(180deg)" : "rotate(0deg)",
+            fill: "currentColor",
+          }}
         />
       </div>
 
@@ -190,7 +175,6 @@ export const SelectCategoryClient = (props) => {
                   padding: "8px 20px",
                   cursor: "pointer",
                   borderRadius: "4px",
-                  color: "var(--color-text-primary)",
                 }}
                 data-value={index + 1}
                 onClick={handleChoose}

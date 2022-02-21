@@ -71,64 +71,64 @@ export const TableCalls = ({ data }) => {
   };
 
   return (
-    <div className="wrapper-table">
+    <>
       <FilterBoard
         data={data}
         setFilter={setFlterList}
         filterList={filterList}
       />
-      <table className="table">
-        <thead>
-          <tr className="table__item">
-            <th className="table__head-space"></th>
-            <th className="table__head-type">Тип</th>
-            <th className="table__head-time">Время</th>
-            <th className="table__head-person">Сотрудник</th>
-            <th className="table__head-calls">Звонки</th>
-            <th className="table__head-source">Источник</th>
-            <th className="table__head-score">Оценка</th>
-            <th className="table__head-duration">Длительность</th>
-          </tr>
-        </thead>
+      <div className="wrapper-table">
+        <table className="table">
+          <thead>
+            <tr className="table__item">
+              <th className="table__head-space"></th>
+              <th className="table__head-type">Тип</th>
+              <th className="table__head-time">Время</th>
+              <th className="table__head-person">Сотрудник</th>
+              <th className="table__head-calls">Звонки</th>
+              <th className="table__head-source">Источник</th>
+              <th className="table__head-score">Оценка</th>
+              <th className="table__head-duration">Длительность</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {filterList &&
-            filterList.map((item) => {
-              return (
-                <tr key={item.id} className="table__item">
-                  <td> </td>
-                  <td data-v={item.status} data-b={item.in_out}>
-                    {setTypeCall(item)}
-                  </td>
-                  <td>{getNormalizeTime(item.date)}</td>
-                  <td
-                    data-id={item.person_id}
-                    data-name={item.person_name}
-                    data-surname={item.person_surname}
-                  >
-                    <img
-                      src={
-                        item.person_avatar ||
-                        "https://lk.skilla.ru/img/noavatar.jpg"
-                      }
-                      alt="аватар"
-                      width="32"
-                      height="32"
-                    />
-                  </td>
-                  <td className="table__nameNumber">
-                    {identifyNumberPhone(item)}
-                  </td>
-                  <td>-</td>
-                  <td>
-                    {item.record !== "" ? <ButtonDetect item={item} /> : ""}
-                  </td>
-                  <td>{getNormalizeMinute(item.time)}</td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </table>
-    </div>
+          <tbody>
+            {filterList &&
+              filterList.map((item) => {
+                return (
+                  <tr key={item.id} className="table__item">
+                    <td> </td>
+                    <td data-v={item.status} data-b={item.in_out}>
+                      {setTypeCall(item)}
+                    </td>
+                    <td>{getNormalizeTime(item.date)}</td>
+                    <td
+                      data-id={item.person_id}
+                      data-name={item.person_name}
+                      data-surname={item.person_surname}
+                    >
+                      <img
+                        src={
+                          item.person_avatar ||
+                          "https://lk.skilla.ru/img/noavatar.jpg"
+                        }
+                        alt="аватар"
+                        width="32"
+                        height="32"
+                      />
+                    </td>
+                    <td>{identifyNumberPhone(item)}</td>
+                    <td>-</td>
+                    <td style={{ position: "relative" }}>
+                      {item.record !== "" ? <ButtonDetect item={item} /> : ""}
+                    </td>
+                    <td>{getNormalizeMinute(item.time)}</td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };

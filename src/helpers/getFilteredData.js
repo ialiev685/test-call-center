@@ -7,8 +7,6 @@ const getListTypeCalls = (value, data) => {
     { val: "0", name: "Исходящие" },
   ];
 
-  console.log(value);
-
   if (value.text === "Все типы") return data;
   // if (value.text === "Все") {
   //   const filteredData = data.filter(
@@ -26,7 +24,7 @@ const getListTypeCalls = (value, data) => {
 };
 
 const getPeriodListCalls = (period, data) => {
-  if (period.text === "Укажите дату") {
+  if (period.value === 5) {
     const filteredData = data.filter(({ date_notime }) => {
       const dateCheckNormalize = new Date(date_notime).toLocaleDateString();
       const dateFrom = period.valueOne.toLocaleDateString();
