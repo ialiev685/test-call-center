@@ -35,7 +35,7 @@
   }
 
   & td {
-    padding: 22px 0;
+    padding: 12px 0;
 
     color: var(--color-text-primary);
   }
@@ -91,11 +91,6 @@
   &__item {
     // text-align: center;
     border-bottom: 1px solid var(--border-color-silver);
-  }
-
-  &__nameNumber {
-    display: flex;
-    flex-direction: column;
   }
 }
 

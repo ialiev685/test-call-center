@@ -70,30 +70,38 @@ export const SelectCategoryDate = (props) => {
         .forEach((_, index) => {
           itemRef.current.children[index].style.backgroundColor =
             "var(--bg-table)";
+          itemRef.current.children[index].style.color =
+            "var(--color-text-secondary)";
         });
 
       itemRef.current.children[indexHover - 1].style.backgroundColor =
         "var(--bg-hover)";
+      itemRef.current.children[indexHover - 1].style.color =
+        "var(--color-text-blue2)";
     }
   }, [hiddenList, indexHover]);
 
-  //сброс и выделение цветом выбранной категории в меню
   useEffect(() => {
-    if (!hiddenList) {
-      Array(itemRef.current.children.length)
-        .fill()
-        .forEach((_, index) => {
-          const textContent = itemRef.current.children[index].textContent;
-          itemRef.current.children[index].style.color =
-            "var(--color-text-primary)";
+    if (currentValueDateFrom !== "" && currentValueDateTo !== "") {
+      const periodDateSend = {
+        target: {
+          valueOne: currentValueDateFrom,
+          valueTwo: currentValueDateTo,
+          value: 5,
+          text: `${new Date(
+            currentValueDateFrom
+          ).toLocaleDateString()}-${new Date(
+            currentValueDateTo
+          ).toLocaleDateString()}`,
+        },
+      };
 
-          if (textContent === currentValue.target.text) {
-            itemRef.current.children[index].style.color =
-              "var(--color-text-blue2)";
-          }
-        });
+      setCurrentValue(periodDateSend);
+      setHiddenList(true);
+      onChange(periodDateSend.target);
+      return;
     }
-  }, [currentValue.target.text, hiddenList]);
+  }, [currentValueDateFrom, currentValueDateTo, onChange]);
 
   const handleClickOutside = (e) => {
     if (!wrapperRef.current.contains(e.target)) {
@@ -114,30 +122,10 @@ export const SelectCategoryDate = (props) => {
       },
     };
 
-    if (
-      e.target.textContent === "Укажите дату" &&
-      (currentValueDateFrom === "" || currentValueDateTo === "")
-    ) {
-      return;
-    }
-
     // if (newCurrentValue.target.value !== 0) setCurrentColor(true);
     setCurrentValue(newCurrentValue);
     setHiddenList(true);
 
-    if (
-      e.target.textContent === "Укажите дату" &&
-      currentValueDateFrom !== "" &&
-      currentValueDateTo !== ""
-    ) {
-      const periodDateSend = {
-        valueOne: currentValueDateFrom,
-        valueTwo: currentValueDateTo,
-        text: e.target.textContent,
-      };
-      onChange(periodDateSend);
-      return;
-    }
     if (typeof onChange === "function") onChange(newCurrentValue.target);
   };
 
@@ -155,29 +143,40 @@ export const SelectCategoryDate = (props) => {
   };
 
   //список
-  const listArray = ["3 дня", "Неделя", "Месяц", "Год", "Укажите дату"];
+  const listArray = ["3 дня", "Неделя", "Месяц", "Год"];
 
   return (
-    <div ref={wrapperRef} style={{ position: "relative", ...style }}>
+    <div
+      ref={wrapperRef}
+      style={{
+        position: "relative",
+        ...style,
+        fontSize: "14px",
+
+        color: "var(--color-text-secondary)",
+      }}
+    >
       <div
         onClick={handleShowList}
+        className="select-header"
         style={{
           display: "flex",
           alignItems: "center",
+          minWidth: "115px",
           justifyContent: "space-between",
-          minWidth: "130px",
           cursor: "pointer",
         }}
       >
-        <ArrowIcon style={{ transform: "rotate(-90deg)" }} />
-        <CalendarIcon />
-        <span
-          data-value={currentValue.target.value}
-          style={{ color: "var(--color-text-blue2)" }}
-        >
+        <ArrowIcon
+          style={{ transform: "rotate(-90deg)", fill: "currentColor" }}
+        />
+        <CalendarIcon style={{ fill: "currentColor" }} />
+        <span data-value={currentValue.target.value}>
           {currentValue.target.text}
         </span>
-        <ArrowIcon style={{ transform: "rotate(90deg)" }} />
+        <ArrowIcon
+          style={{ transform: "rotate(90deg)", fill: "currentColor" }}
+        />
       </div>
 
       <div
@@ -187,6 +186,7 @@ export const SelectCategoryDate = (props) => {
           position: "absolute",
           zIndex: 5,
           bottom: 0,
+          right: 0,
           top: "100%",
           width: "204px",
         }}
@@ -215,7 +215,6 @@ export const SelectCategoryDate = (props) => {
                   padding: "8px 20px",
                   cursor: "pointer",
                   borderRadius: "4px",
-                  color: "var(--color-text-primary)",
                 }}
                 data-value={index + 1}
                 onClick={handleChoose}
@@ -229,7 +228,15 @@ export const SelectCategoryDate = (props) => {
               display: "flex",
               alignItems: "center",
               padding: "8px 10px 8px 20px",
-              color: "var(--color-text-primary)",
+            }}
+          >
+            Укажите дату
+          </li>
+          <li
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "8px 10px 8px 20px",
             }}
           >
             <Datetime

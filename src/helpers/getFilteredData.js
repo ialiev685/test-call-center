@@ -7,7 +7,7 @@ const getListTypeCalls = (value, data) => {
     { val: "0", name: "Исходящие" },
   ];
 
-  if (value.text === "Все") return data;
+  if (value.text === "Все типы") return data;
   // if (value.text === "Все") {
   //   const filteredData = data.filter(
   //     ({ in_out }) => in_out === "0" || in_out === "1"
@@ -24,7 +24,7 @@ const getListTypeCalls = (value, data) => {
 };
 
 const getPeriodListCalls = (period, data) => {
-  if (period.text === "Укажите дату") {
+  if (period.value === 5) {
     const filteredData = data.filter(({ date_notime }) => {
       const dateCheckNormalize = new Date(date_notime).toLocaleDateString();
       const dateFrom = period.valueOne.toLocaleDateString();
@@ -55,7 +55,7 @@ const getPeriodListCalls = (period, data) => {
 };
 
 const getCurrentClienCall = (client, data) => {
-  if (client.text === "Все") return data;
+  if (client.text === "Все клиенты") return data;
 
   const selectValue = client.text.split("|");
 
