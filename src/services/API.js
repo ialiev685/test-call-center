@@ -34,7 +34,7 @@ export const fetchRecordCall = async ({ record, partnership_id }) => {
   //     },
   //   }
   // );
-  // return result.blob();
+  // return result;
   // try {
   //   token.setToken(tokenValid);
   //   const result = await axios.post(
@@ -50,12 +50,12 @@ export const fetchRecordCall = async ({ record, partnership_id }) => {
       "POST",
       `${BASE_URL}mango/getRecord?record=${record}&partnership_id-${partnership_id}`
     );
-
     xhr.setRequestHeader("Authorization", `Bearer ${tokenValid}`);
     xhr.onload = () => {
       console.log("status", xhr.response);
       if (xhr.status === 200) {
-        const blob = new Blob([xhr.response], { type: "audio/mpeg" });
+        console.log(xhr.response);
+        const blob = new Blob([xhr.response], { type: "audio/x-mpeg-3" });
         resolve(blob);
       }
     };
